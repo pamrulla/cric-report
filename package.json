@@ -1,10 +1,10 @@
 {
-  "name": "with-chakra-ui-typescript",
+  "name": "cric-report",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 8080",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 8080"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.5",
