@@ -1,17 +1,19 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import { Flex, Heading, Link } from '@chakra-ui/react'
+import theme from '../theme'
 
 export const Hero = ({ title }: { title: string }) => (
   <Flex
+    direction="row"
     justifyContent="center"
     alignItems="center"
-    height="100vh"
-    bgGradient="linear(to-l, #7928CA, #FF0080)"
-    bgClip="text"
+    width="100vw"
+    color={theme.colors.color3}
+    py="10px"
   >
-    <Heading fontSize="6vw">{title}</Heading>
+    <Heading><Link href="/">{title}</Link></Heading>
   </Flex>
 )
 
 Hero.defaultProps = {
-  title: 'with-chakra-ui-typescript',
+  title: 'Cric Report',
 }
