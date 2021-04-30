@@ -149,7 +149,7 @@ const getTabTitle = (name: string, total: number, wickets: number) => {
 }
 
 const prepareBattingRow = (battingArray: any) => {
-    return battingArray.map(b => {
+    return battingArray.map((b: { player: { name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }; runs: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; balls: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; fours: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; sixes: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; sr: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
         return (
             <Tr>
                 <Td>{b.player.name}</Td>
@@ -164,7 +164,7 @@ const prepareBattingRow = (battingArray: any) => {
 }
 
 const prepareBowlingRow = (bowlingArray: any) => {
-    return bowlingArray.map(b => {
+    return bowlingArray.map((b: { player: { name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }; overs: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; maidens: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; runs: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; wickets: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; economy: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
         return (
             <Tr>
                 <Td>{b.player.name}</Td>

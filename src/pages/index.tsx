@@ -1,7 +1,6 @@
 import {
   ScaleFade,
   SimpleGrid,
-  Text,
 } from '@chakra-ui/react'
 
 import { Hero } from '../components/Hero'

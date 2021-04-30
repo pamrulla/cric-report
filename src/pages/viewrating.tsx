@@ -71,12 +71,12 @@ import { MatchInfo } from '../components/MatchInfo';
   }
 }
 
-const getTabTitle = (name: string, rating: number, count: number) => {
+const getTabTitle = (name: string, rating: number) => {
     return name + " " + rating + " / 5"; 
 }
 
 const prepareRow = (arr: any) => {
-    return arr.map(b => {
+    return arr.map((b: { player: { name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }; rating: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
         return (
             <Tr>
                 <Td>{b.player.name}</Td>

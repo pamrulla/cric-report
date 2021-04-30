@@ -206,7 +206,7 @@ const Index = () => {
     }
 
     const getPerformanceList = (performance: any) => {
-      return performance.map((m, i) => {
+      return performance.map((m: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined, i: string) => {
         return <Text key={"perf" + i}>{m}</Text>
       });
     }

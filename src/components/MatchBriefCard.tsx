@@ -2,7 +2,6 @@ import {
     Box,
     Center,
     Flex,
-    Heading,
     Spacer,
   } from '@chakra-ui/react'
   

@@ -1,16 +1,9 @@
 import {
-    SimpleGrid,
-    Text,
-    Box,
     Flex,
     Heading,
   } from '@chakra-ui/react'
   
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Footer } from '../components/Footer'
 import React from 'react';
-import theme from '../theme';
 
 interface MatchInfoProps {
     team1: string,
