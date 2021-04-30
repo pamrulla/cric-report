@@ -36,6 +36,7 @@ const OnViewRatings = (id: string) => {
 }
 const OnGiveRating = (id: string) => {
     console.log("On Give Rating " + id)
+    Router.push("/dovote");
 }
 
 export const MatchBriefCard = (props: MatchBriefCardProps) => {

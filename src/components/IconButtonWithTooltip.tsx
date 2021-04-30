@@ -19,7 +19,7 @@ export const IconButtonWithTooltip = (props: IconButtonWithTooltipProps) => {
 
     return (
         <Tooltip hasArrow label={props.toolTip} bg={theme.colors.color4}>
-            <IconButton onClick={onClickFunc} aria-label={props.toolTip} color={theme.colors.color5}  bg={theme.colors.color4} size="lg" fontSize="30px" icon={props.icon}></IconButton>
+            <IconButton  _hover={{scale: "110%", bg: theme.colors.color6}} onClick={onClickFunc} aria-label={props.toolTip} color={theme.colors.color5}  bg={theme.colors.color4} size="lg" fontSize="30px" icon={props.icon}></IconButton>
         </Tooltip>
     );
 }

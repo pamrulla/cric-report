@@ -17,6 +17,7 @@ const theme = extendTheme({
     color3: '#A8ABE1',
     color4: '#6946ED',
     color5: '#ffffff',
+    color6: '#666594',
     wonColor: '#ffc100',
     wonTextColor: '#444',
     lostColor: '#898794',

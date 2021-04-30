@@ -11,6 +11,7 @@ export const Container = (props: FlexProps) => {
       bg={theme.colors.color1}
       color={theme.colors.color3}
       {...props}
+      minH="100vh"
     />
   )
 }

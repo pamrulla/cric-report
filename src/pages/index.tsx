@@ -1,4 +1,5 @@
 import {
+  ScaleFade,
   SimpleGrid,
   Text,
 } from '@chakra-ui/react'
@@ -49,10 +50,11 @@ const data = {
 
 const renderCards = () => {
   return data.matches.map(m =>{
+    const iscale = Math.random();
     if(m.team1Won)
-      return <MatchBriefCard count={m.count} id={m.id} team1={m.team1.name} team2={m.team2.name} result={m.result} isTeam1Won mathDate={m.date} team1Rating={m.team1Rating.toString()} team2Rating={m.team2Rating.toString()} mt="1em"/>;
+      return <ScaleFade initialScale={iscale} in={true} key={m.id} ><MatchBriefCard count={m.count} id={m.id} team1={m.team1.name} team2={m.team2.name} result={m.result} isTeam1Won mathDate={m.date} team1Rating={m.team1Rating.toString()} team2Rating={m.team2Rating.toString()} mt="1em"/></ScaleFade>;
     else
-      return <MatchBriefCard count={m.count} id={m.id} team1={m.team1.name} team2={m.team2.name} result={m.result} mathDate={m.date} team1Rating={m.team1Rating.toString()} team2Rating={m.team2Rating.toString()} mt="1em"/>;
+      return <ScaleFade initialScale={iscale} in={true} key={m.id} ><MatchBriefCard count={m.count} id={m.id} team1={m.team1.name} team2={m.team2.name} result={m.result} mathDate={m.date} team1Rating={m.team1Rating.toString()} team2Rating={m.team2Rating.toString()} mt="1em"/></ScaleFade>;
   });
 }
 
