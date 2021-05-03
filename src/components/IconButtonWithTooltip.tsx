@@ -6,7 +6,7 @@ import { JSXElementConstructor, ReactElement } from 'react';
 import theme from '../theme'
   
 interface IconButtonWithTooltipProps {
-    onClick: (id: string) => void,
+    onClick?: (id: string) => void,
     id: string,
     toolTip: string,
     icon: ReactElement<any, string | JSXElementConstructor<any>>
@@ -14,7 +14,8 @@ interface IconButtonWithTooltipProps {
 
 export const IconButtonWithTooltip = (props: IconButtonWithTooltipProps) => {
     const onClickFunc = () => {
-        props.onClick(props.id)
+        if(props.onClick != undefined)
+            props.onClick(props.id)
     }
 
     return (
