@@ -109,7 +109,7 @@ const AddPlaying11Modal = (props: AddPlaying11ModalProps) => {
         {
             loading ?
             <Text>Loading...</Text> :
-            error ? <Text>Error occured :(</Text> : 
+            error ? <Text>Error occured</Text> : 
                 <>
                     <Button ml="6px" bg={theme.colors.color4} onClick={onOpen} isDisabled={props.team.length === 0}>Add Playing 11</Button>
                     <Modal
@@ -139,7 +139,7 @@ const AddPlaying11Modal = (props: AddPlaying11ModalProps) => {
                         <ModalFooter>
                         <Flex w="100%" direction="row" justifyContent="space-around">
                             <AddPlayerModal onSuccess={OnAddingAPlayer} />
-                            <Button isDisabled={selectedPlayers.length != 3} bg={theme.colors.color4} onClick={OnSubmit}>
+                            <Button isDisabled={selectedPlayers.length != 11} bg={theme.colors.color4} onClick={OnSubmit}>
                                 Save
                             </Button>
                             <Button isDisabled={selectedPlayers.length == 0} onClick={OnClear}>
