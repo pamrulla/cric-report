@@ -37,7 +37,7 @@ const Index = () => {
   });
 
   const [uploadMatch, {loading: uploadMatchLoading}] = useMutation(UPLOAD_MATCH, {
-    onCompleted: (data) => {
+    onCompleted: (_data) => {
       Router.push("/");
     }
   });

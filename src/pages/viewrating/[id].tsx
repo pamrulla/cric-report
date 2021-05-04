@@ -28,54 +28,6 @@ import { useQuery } from '@apollo/client';
 import { MATCH_VIEWRATING } from "../../graphql/queries";
 import { RatingData, TeamData } from '../../models/apidatamodels';
   
-  const data = {
-    match : {
-        id: "1",
-        date: "Apr 28, 2019", 
-        result: "CSK Won by 7 wickets",
-        team1Won: true,
-        team1Rating: 2.3,
-        team2Rating: 5,
-        count: 10,
-        team1: {
-          id: "11",
-          name: "CSK",
-          ratings: [
-              {
-                  player: {
-                      name: "Player 1"
-                  },
-                  rating: 2.5,
-              },
-              {
-                player: {
-                    name: "Player 2"
-                },
-                rating: 1.25,
-            }
-          ],
-        },
-        team2: {
-          id: "12",
-          name: "SRH",
-          ratings: [
-            {
-                player: {
-                    name: "Player 12"
-                },
-                rating: 2.5,
-            },
-            {
-              player: {
-                  name: "Player 22"
-              },
-              rating: 1.25,
-          }
-        ],
-      }
-  }
-}
-
 const getTabTitle = (name: string, rating: number) => {
     return name + " " + (Math.round(rating *100 ) / 100) + " / 5"; 
 }
