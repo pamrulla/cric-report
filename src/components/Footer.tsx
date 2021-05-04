@@ -17,8 +17,8 @@ export const Footer = (props: FlexProps) => (
     </Flex>
     <Flex direction="column" justifyContent="center" alignItems="center">
       <Heading fontSize="sm" fontWeight="extrabold">GitHub:</Heading>
-      <Link hreaf="https://github.com/pamrulla/cric-report" target="_blank"><Text as="u">Front End Link</Text></Link>
-      <Link hreaf="https://github.com/pamrulla/cric-report-be" target="_blank"><Text as="u">Back End Link</Text></Link>
+      <Link href="https://github.com/pamrulla/cric-report" target="_blank"><Text as="u">Front End Link</Text></Link>
+      <Link href="https://github.com/pamrulla/cric-report-be" target="_blank"><Text as="u">Back End Link</Text></Link>
     </Flex>
   </Flex>
 )

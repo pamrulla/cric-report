@@ -62,7 +62,7 @@ const Index = () => {
   }
   return (
     <Container>
-      <Hero />
+      <Hero isHome={true} />
       {
         loading? <Text>Loading matches, please wait...</Text> :
         error? <Text>Failed to load matches, try again...</Text> :
