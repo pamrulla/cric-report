@@ -58,7 +58,6 @@ const EditPlayerInfoModal = (props: EditPlayerInfoModalProps) => {
         if(performance5.length > 0) {
           info.performance.performance.push(performance5);
         }
-        console.log(JSON.stringify(info));
         props.onSuccess(info);
         onClose();
     }

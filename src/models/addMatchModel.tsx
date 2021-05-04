@@ -58,19 +58,11 @@ export class Team {
 }
 
 export class Match {
-    name: string;
-    tournamentId: string;
-    date: string;
-    result: string;
-    teams: Team[];
-    
-    constructor(name: string, tournamentId: string, date: string, result: string) {
-        this.name = name;
-        this.tournamentId = tournamentId;
-        this.date = date;
-        this.result = result;
-        this.teams = [];
-    }
+    name: string = "";
+    tournamentId: string = "";
+    date: string = "";
+    result: string = "";
+    teams: Team[] = [];
 }
 
 export class Tournament {

@@ -12,6 +12,8 @@ import {
 import theme from "../theme";
 import React, { useState } from 'react';
 import { Player } from "../models/addMatchModel";
+import { useMutation } from '@apollo/client';
+import { ADD_PLAYER } from '../graphql/mutations';
 
 interface AddPlayerModalProps {
     onSuccess: (data: Player) => void
@@ -20,12 +22,15 @@ interface AddPlayerModalProps {
 const AddPlayerModal = (props: AddPlayerModalProps) => {
     const {isOpen, onOpen, onClose}  = useDisclosure();
     const [player, setPlayer] = useState<Player>(new Player())
+    const [addPlayer, {loading}] = useMutation(ADD_PLAYER, {
+      onCompleted: (data) => {
+        props.onSuccess(data.addPlayer);
+        onClose();
+      }
+    });
 
     const OnSubmit = () => {
-        console.log(JSON.stringify(player));
-        player.id = "5";
-        props.onSuccess(player);
-        onClose();
+        addPlayer({variables: {name: player.name, photo: player.photo}});
     }
 
     return (
@@ -44,7 +49,7 @@ const AddPlayerModal = (props: AddPlayerModalProps) => {
               <Input placeholder="Photo" name="player-photo" value={player.photo} onChange={e => setPlayer({...player, photo: e.target.value})} />
             </ModalBody>
             <ModalFooter>
-              <Button bg={theme.colors.color4} mr={3} onClick={OnSubmit}>
+              <Button bg={theme.colors.color4} mr={3} onClick={OnSubmit} loadingText="please wait" isLoading={loading}> 
                 Save
               </Button>
               <Button onClick={onClose}>Cancel</Button>

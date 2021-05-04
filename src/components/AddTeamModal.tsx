@@ -64,7 +64,6 @@ const AddTeamModal = (props: AddTeamModalProps) => {
         team.performance[team.performance.length-1].playerId = info.id;
       });
 
-      console.log(JSON.stringify(team));
       props.onSuccess(team);
       onClose();
     }
@@ -107,7 +106,6 @@ const AddTeamModal = (props: AddTeamModalProps) => {
 
     const renderPlayerInfo = (id: string, name: string, photo: string) => {
         if(hasPlayerInfo(id)) {
-          console.log("here")
           const info = getPlayerInfo(id)
           return (
           <>

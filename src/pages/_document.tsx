@@ -6,7 +6,6 @@ export default class Document extends NextDocument {
     return (
       <Html>
         <Head>
-          <title>Cricket Report Card</title>
             <meta name='keywords' content='cricket, india, ipl, report, card, rating, review, score'/>
             <meta name='description' content='View and submit your ratings to the each completed cricket match.'/>
             <meta name='subject' content="View and submit your ratings to the each completed cricket match."/>

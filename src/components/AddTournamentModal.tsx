@@ -9,23 +9,32 @@ import {
     ModalFooter,
     ModalHeader
 } from '@chakra-ui/react'
+import { useMutation } from "@apollo/client";
 import theme from "../theme";
 import React, { useState } from 'react';
 import { Tournament } from "../models/addMatchModel";
+import { ADD_TOURNAMENT } from '../graphql/mutations';
 
 interface AddTournamentModalProps {
     onSuccess: (data: Tournament) => void
 }
 
 const AddTournamentModal = (props: AddTournamentModalProps) => {
+
+    const [addTournament, {loading: addTournamentInProgress}] = useMutation(ADD_TOURNAMENT, 
+      {
+        onCompleted(data){
+          const tr: Tournament = data.addTournament;
+          props.onSuccess(tr);
+          onClose();
+        }
+      });
+
     const {isOpen, onOpen, onClose}  = useDisclosure();
     const [tournament, setTorunament] = useState<Tournament>(new Tournament())
 
     const OnSubmit = () => {
-        console.log(JSON.stringify(tournament));
-        tournament.id = "5";
-        props.onSuccess(tournament);
-        onClose();
+        addTournament({variables: {name: tournament.name, host: tournament.host, year: tournament.year}});
     }
 
     return (
@@ -45,7 +54,7 @@ const AddTournamentModal = (props: AddTournamentModalProps) => {
               <Input placeholder="Year of the Tournament" name="tournament-year" value={tournament.year} onChange={e => setTorunament({...tournament, year: Number(e.target.value)})} />
             </ModalBody>
             <ModalFooter>
-              <Button bg={theme.colors.color4} mr={3} onClick={OnSubmit}>
+              <Button bg={theme.colors.color4} mr={3} onClick={OnSubmit} loadingText="please wait" isLoading={addTournamentInProgress}>
                 Save
               </Button>
               <Button onClick={onClose}>Cancel</Button>

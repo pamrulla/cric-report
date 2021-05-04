@@ -12,6 +12,8 @@ import {
     AccordionIcon,
     AccordionPanel
 } from '@chakra-ui/react'
+import Router from "next/router";
+import { useMutation, useQuery } from "@apollo/client";
 import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
 import { Footer } from '../components/Footer'
@@ -20,47 +22,44 @@ import React, { useState } from 'react';
 import { Match, Team, Tournament } from '../models/addMatchModel';
 import AddTournamentModal from '../components/AddTournamentModal';
 import AddTeamModal from '../components/AddTeamModal';
-
-const data = {
-  tournaments: [
-    {
-      id: "1",
-      name: "T1",
-    },
-    {
-      id: "2",
-      name: "T2",
-    },
-    {
-      id: "3",
-      name: "T3",
-    }
-  ]
-};
+import { GET_TOURNAMENTS } from '../graphql/queries';
+import { UPLOAD_MATCH } from '../graphql/mutations';
 
 const Index = () => {
-  
-  const [match, setMatch] = useState<Match>(new Match("", "", "", ""));
+  const [match, setMatch] = useState<Match>(new Match());
+  const [tournaments, setTournaments] = useState<Tournament[]>([]);
+
+  const { loading, error } = useQuery(GET_TOURNAMENTS, {
+    onCompleted: (data) => {
+      if(data.tournaments.length > 0)
+        setTournaments([...data.tournaments])    
+    }
+  });
+
+  const [uploadMatch, {loading: uploadMatchLoading}] = useMutation(UPLOAD_MATCH, {
+    onCompleted: (data) => {
+      Router.push("/");
+    }
+  });
   
   const OnSubmit = () => {
-    console.log(JSON.stringify(match));
+    uploadMatch({variables:{input: {match: match}}});
   }
 
   const renderTournamentOptions = () => {
-    return data.tournaments.map(t => {
+    return tournaments.map(t => {
       return <option value={t.id} key={t.id}>{t.name}</option>
     })
   }
 
   const onAddingTournament = (tournament: Tournament) => {
-    data.tournaments.push(tournament);
+    tournaments.push(tournament);
     setMatch({...match, tournamentId: tournament.id})
   }
 
   const onAddingTeam = (team: Team) => {
     match.teams.push(team);
     setMatch({...match, teams: [...match.teams]})
-    console.log(match);
   }
 
   const renderBowling = (t : Team) => {
@@ -139,29 +138,34 @@ const Index = () => {
         boxShadow="dark-lg"
         maxW="620px"
       >
-        <Input placeholder="Name of the Match" name="match-name" value={match.name} onChange={e => setMatch({...match, name: e.target.value})} />
-        <Input placeholder="Date of the Match" name="match-date" value={match.date}  onChange={e => setMatch({...match, date: e.target.value})} />
-        <Input placeholder="Result of the Match" name="match-result" value={match.result}  onChange={e => setMatch({...match, result: e.target.value})} />
-        <Flex direction="row">
-          <Select placeholder="Select Tournament" value={match.tournamentId} onChange={e => setMatch({...match, tournamentId: e.target.value})}>
-            {renderTournamentOptions()}
-          </Select>
-          <AddTournamentModal onSuccess={onAddingTournament}></AddTournamentModal>
-        </Flex>
-        <Flex my="10px" direction="column">
-          <Accordion allowToggle>
-            {renderTeams()}
-          </Accordion>          
-        </Flex>
-        <Flex my="10px" direction="row" justifyContent="space-between">
-          <AddTeamModal onSuccess={onAddingTeam}></AddTeamModal>
-          <Button bg={theme.colors.color4} onClick={OnSubmit}>Submit</Button>
-        </Flex>
+        {loading ? 
+          <Text>Loading...</Text> :
+          error ? <Text>Error occured...</Text> :
+          <>
+            <Input placeholder="Name of the Match" name="match-name" value={match.name} onChange={e => setMatch({...match, name: e.target.value})} />
+            <Input placeholder="Date of the Match" name="match-date" value={match.date}  onChange={e => setMatch({...match, date: e.target.value})} />
+            <Input placeholder="Result of the Match" name="match-result" value={match.result}  onChange={e => setMatch({...match, result: e.target.value})} />
+            <Flex direction="row">
+              <Select placeholder="Select Tournament" value={match.tournamentId} onChange={e => setMatch({...match, tournamentId: e.target.value})}>
+                {renderTournamentOptions()}
+              </Select>
+              <AddTournamentModal onSuccess={onAddingTournament}></AddTournamentModal>
+            </Flex>
+            <Flex my="10px" direction="column">
+              <Accordion allowToggle>
+                {renderTeams()}
+              </Accordion>          
+            </Flex>
+            <Flex my="10px" direction="row" justifyContent="space-between">
+              <AddTeamModal onSuccess={onAddingTeam}></AddTeamModal>
+              <Button bg={theme.colors.color4} onClick={OnSubmit} loadingText="Please wait..." isLoading={uploadMatchLoading} >Submit</Button>
+            </Flex>
+          </>
+        }
       </Box>
       <Footer />
     </Container>
   );
 }
 
-export default Index
-  
+export default Index;
